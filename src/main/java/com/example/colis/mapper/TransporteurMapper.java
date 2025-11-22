@@ -26,7 +26,7 @@ public class TransporteurMapper {
                 .active(transporteur.isActive())
                 .build();
     }
-    
+
     public List<TransporteurResponse> toResponseList(List<Transporteur> transporteurs) {
         if (transporteurs == null) {
             return null;

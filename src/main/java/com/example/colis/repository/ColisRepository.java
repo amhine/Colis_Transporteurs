@@ -15,4 +15,5 @@ public interface ColisRepository extends MongoRepository<Colis, String> {
     Page<Colis> findByType(Specialite Type,Pageable pageable);
     Page<Colis> findByAdresseDestinationContainingIgnoreCase(String adresse, Pageable pageable);
     Page<Colis> findByTransporteurId(String transporteurId, Pageable pageable);
+    Page<Colis> findAll(Colis colis,Pageable pageable);
 }

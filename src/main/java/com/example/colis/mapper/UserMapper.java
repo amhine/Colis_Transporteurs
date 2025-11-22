@@ -3,7 +3,7 @@ package com.example.colis.mapper;
 import com.example.colis.dto.response.UserResponse;
 import com.example.colis.model.Admin;
 import com.example.colis.model.Transporteur;
-import com.example.colis.model.Users;
+import com.example.colis.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class UserMapper {
 
-    public UserResponse toResponse(Users user) {
+    public UserResponse toResponse(User user) {
         if (user == null) {
             return null;
         }
@@ -33,7 +33,7 @@ public class UserMapper {
     }
 
 
-    public List<UserResponse> toResponseList(List<Users> users) {
+    public List<UserResponse> toResponseList(List<User> users) {
         if (users == null) {
             return null;
         }

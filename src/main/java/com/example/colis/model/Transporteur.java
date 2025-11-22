@@ -8,7 +8,7 @@ import com.example.colis.model.Enums.StatutTransporteur;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Transporteur extends Users {
+public class Transporteur extends User {
     private StatutTransporteur status;
     private Specialite specialite;
 
