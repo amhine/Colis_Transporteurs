@@ -7,17 +7,19 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends MongoRepository<User,Long> {
+public interface UserRepository extends MongoRepository<User,String> {
 
     Optional<User> findByLogin(String login);
 
     Page<User> findAll(Pageable pageable);
 
-    @Query("{ 'role' : ?0 }")
-    Page<User> findByRole(String role, Pageable pageable);
+    
+    @Query("{ 'role': 'TRANSPORTEUR' }")
+    List<User> findAllTransporteurs();
 
     @Query("{ 'role' : 'TRANSPORTEUR', 'specialite' : ?0 }")
     Page<User> findTransporteursBySpecialite(String specialite, Pageable pageable);

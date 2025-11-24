@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TransporteurResponse {
-    private Long id;
+    private String id;
     private String login;
     private Specialite specialite;
     private StatutTransporteur status;

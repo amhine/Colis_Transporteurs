@@ -25,8 +25,7 @@ public class ColisMapper {
                 .poids(colis.getPoids())
                 .adresseDestination(colis.getAdresseDestination())
                 .statut(colis.getStatut())
-                .transporteurId(colis.getTransporteurId() != null ?
-                        Long.parseLong(colis.getTransporteurId()) : null);
+                .transporteurId(colis.getTransporteurId()); // <-- correction ici
 
         if (colis instanceof FragileColis) {
             FragileColis fragile = (FragileColis) colis;
@@ -39,6 +38,8 @@ public class ColisMapper {
 
         return builder.build();
     }
+
+
     public ColisResponse toResponse(Colis colis, String transporteurLogin) {
         ColisResponse response = toResponse(colis);
         if (response != null) {

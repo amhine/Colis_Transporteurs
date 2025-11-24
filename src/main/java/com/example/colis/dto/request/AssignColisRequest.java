@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AssignColisRequest {
     @NotNull(message = "L'ID du transporteur est obligatoire")
-    private Long transporteurId;
+    private String transporteurId;
 }

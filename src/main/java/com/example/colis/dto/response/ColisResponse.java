@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ColisResponse {
-    private Long id;
+    private String id;
     private Specialite type;
     private Double poids;
     private String adresseDestination;
     private StatutColis statut;
-    private Long transporteurId;
+    private String transporteurId;
     private String transporteurLogin;
     private String instructionsManutention;
     private Double temperatureMin;

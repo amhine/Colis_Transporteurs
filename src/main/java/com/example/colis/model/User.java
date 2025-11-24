@@ -7,13 +7,14 @@ import com.example.colis.model.Enums.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
+@Document(collection = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users")
 public class User {
     @Id
-    private long id;
+    private String id;
     private String login;
     private String password;
     private Role role;

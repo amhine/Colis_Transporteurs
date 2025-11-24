@@ -15,7 +15,7 @@ public class LoginResponse {
 
     @Builder.Default
     private String tokenType = "Bearer";
-    private Long userId;
+    private String userId;
     private String login;
     private Role role;
 }
