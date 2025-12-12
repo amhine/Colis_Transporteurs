@@ -1,6 +1,6 @@
 package com.example.colis.model.Enums;
 
-public enum StatutTransporteur {
+public enum UserStatus {
     DISPONIBLE,
     EN_LIVRAISON
 }

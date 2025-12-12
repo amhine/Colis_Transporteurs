@@ -9,13 +9,4 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TransporteurService {
 
-    Page<UserDTO> getAllTransporteurs(Pageable pageable);
-
-    Page<UserDTO> getTransporteursBySpecialite(Specialite specialite, Pageable pageable);
-
-    UserDTO createTransporteur(UserDTO dto);
-
-    UserDTO updateTransporteur(String id, UserDTO dto);
-
-    void deleteTransporteur(String id);
-}
+    }
