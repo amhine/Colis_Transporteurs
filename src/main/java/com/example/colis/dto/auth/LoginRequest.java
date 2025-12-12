@@ -1,4 +1,4 @@
-package com.example.colis.dto.request;
+package com.example.colis.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginRequest {
-
-    @NotBlank(message = "login est obligatoire")
+    @NotBlank(message = "Login est obligatoire")
     private String login;
 
-    @NotBlank(message = "password est obligatoire")
+    @NotBlank(message = "Password est obligatoire")
     private String password;
+
 }

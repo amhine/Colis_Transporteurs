@@ -1,8 +1,6 @@
 package com.example.colis.service.Impl;
 
-import com.example.colis.dto.request.LoginRequest;
 import com.example.colis.dto.response.LoginResponse;
-import com.example.colis.exception.InvalidCredentialsException;
 import com.example.colis.exception.UserInactiveException;
 import com.example.colis.model.User;
 import com.example.colis.repository.UserRepository;

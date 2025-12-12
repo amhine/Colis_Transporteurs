@@ -1,8 +1,7 @@
-package com.example.colis.dto.response;
+package com.example.colis.dto.colis;
 
-import com.example.colis.model.Enums.Specialite;
-import com.example.colis.model.Enums.StatutColis;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.example.colis.model.Enums.ColisStatus;
+import com.example.colis.model.Enums.ColisType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,16 +11,18 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ColisResponse {
+
     private String id;
-    private Specialite type;
+    private ColisType type;
     private Double poids;
     private String adresseDestination;
-    private StatutColis statut;
+    private ColisStatus statut;
     private String transporteurId;
-    private String transporteurLogin;
+
     private String instructionsManutention;
+
     private Double temperatureMin;
     private Double temperatureMax;
+
 }

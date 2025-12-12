@@ -8,8 +8,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Admin extends User {
-
+@EqualsAndHashCode(callSuper=true)
+public class ColisStandard extends Colis{
 
 }

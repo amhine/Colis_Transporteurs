@@ -5,12 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
-@Builder // <-- ajoute ceci
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorResponse {
     private int status;
+    private String error;
     private String message;
 
 }

@@ -1,9 +1,8 @@
-package com.example.colis.dto.response;
+package com.example.colis.dto.user;
 
 import com.example.colis.model.Enums.Role;
 import com.example.colis.model.Enums.Specialite;
-import com.example.colis.model.Enums.StatutTransporteur;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.example.colis.model.Enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,12 +12,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponse {
+
     private String id;
     private String login;
     private Role role;
     private Boolean active;
+
+    private UserStatus statut;
     private Specialite specialite;
-    private StatutTransporteur status;
+
 }

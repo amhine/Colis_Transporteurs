@@ -1,4 +1,4 @@
-package com.example.colis.dto.response;
+package com.example.colis.dto.auth;
 
 import com.example.colis.model.Enums.Role;
 import lombok.AllArgsConstructor;
@@ -7,15 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class LoginResponse {
-    private String token;
 
-    @Builder.Default
-    private String tokenType = "Bearer";
-    private String userId;
+    private String token;
     private String login;
     private Role role;
 }

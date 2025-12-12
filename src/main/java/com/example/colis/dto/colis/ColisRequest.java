@@ -1,30 +1,34 @@
-package com.example.colis.dto.request;
+package com.example.colis.dto.colis;
 
+import com.example.colis.model.Enums.ColisType;
 import com.example.colis.model.Enums.Specialite;
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateColisRequest {
-    @NotNull(message = "Le type de colis est obligatoire")
-    private Specialite type;
+public class ColisRequest {
 
-    @NotNull(message = "poids est obligatoire")
-    @DecimalMin(value = "0.1", message = "poids doit être supérieur à 0")
+    @NotNull(message = "Type est obligatoire")
+    private ColisType type;
+
+    @NotNull(message = "Poids est obligatoire")
+    @Positive(message = "Poids doit être positif")
     private Double poids;
 
-    @NotBlank(message = "adresse est obligatoire")
+    @NotBlank(message = "Adresse de destination est obligatoire")
     private String adresseDestination;
 
     private String instructionsManutention;
 
     private Double temperatureMin;
     private Double temperatureMax;
+
 }

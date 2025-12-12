@@ -1,7 +1,6 @@
-package com.example.colis.dto.request;
+package com.example.colis.dto.colis;
 
-
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssignColisRequest {
-    @NotNull(message = "L'ID du transporteur est obligatoire")
+
+    @NotBlank(message = "ID du transporteur est obligatoire")
     private String transporteurId;
 }
