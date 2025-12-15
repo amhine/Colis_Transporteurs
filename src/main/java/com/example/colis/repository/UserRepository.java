@@ -1,5 +1,8 @@
 package com.example.colis.repository;
 
+import com.example.colis.model.Enums.Specialite;
+import com.example.colis.model.Enums.UserStatus;
+import com.example.colis.model.Transporteur;
 import com.example.colis.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,20 +18,14 @@ public interface UserRepository extends MongoRepository<User,String> {
 
     Optional<User> findByLogin(String login);
 
-    Page<User> findAll(Pageable pageable);
+    @Query("{ '_class' : 'com.colis.model.Transporteur' }")
+    Page<Transporteur> findAllTransporteurs(Pageable pageable);
 
-    
-    @Query("{ 'role': 'TRANSPORTEUR' }")
-    List<User> findAllTransporteurs();
+    @Query("{ '_class' : 'com.colis.model.Transporteur', 'specialite' : ?0 }")
+    Page<Transporteur> findTransporteursBySpecialite(Specialite specialite, Pageable pageable);
 
-    @Query("{ 'role' : 'TRANSPORTEUR', 'specialite' : ?0 }")
-    Page<User> findTransporteursBySpecialite(String specialite, Pageable pageable);
-
-    @Query("{ 'role' : 'TRANSPORTEUR', 'active' : ?0 }")
-    Page<User> findTransporteursByActive(boolean active, Pageable pageable);
-
-    @Query("{ 'role' : 'TRANSPORTEUR', 'statut' : ?0 }")
-    Page<User> findTransporteursByStatut(String statut, Pageable pageable);
+    @Query("{ '_class' : 'com.colis.model.Transporteur', 'statut' : ?0 }")
+    Page<Transporteur> findTransporteursByStatut(UserStatus statut, Pageable pageable);
 
 
 

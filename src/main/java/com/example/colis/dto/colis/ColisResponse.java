@@ -19,9 +19,7 @@ public class ColisResponse {
     private String adresseDestination;
     private ColisStatus statut;
     private String transporteurId;
-
     private String instructionsManutention;
-
     private Double temperatureMin;
     private Double temperatureMax;
 

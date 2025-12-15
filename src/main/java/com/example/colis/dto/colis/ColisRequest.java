@@ -27,7 +27,6 @@ public class ColisRequest {
     private String adresseDestination;
 
     private String instructionsManutention;
-
     private Double temperatureMin;
     private Double temperatureMax;
 

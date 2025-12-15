@@ -1,6 +1,7 @@
 package com.example.colis.dto.user;
 
 import com.example.colis.model.Enums.Specialite;
+import com.example.colis.model.Enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +16,7 @@ public class UpdateUserRequest {
     private String login;
     private String password;
     private Boolean active;
-
-    private StatutTransporteur statut;
+    private UserStatus statut;
     private Specialite specialite;
 
 }
