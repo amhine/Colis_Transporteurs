@@ -1,11 +1,31 @@
 spring:
   application:
-    name: colis
+    name: transporteur-management
   data:
     mongodb:
-      uri: mongodb://localhost:27017/colis
-      database: colis
+      host: localhost
+      port: 27017
+      database: transporteur_db
+      auto-index-creation: true
+
+server:
+  port: 8081
 
 jwt:
-  secret: MaCleSecretePourJWT123456
-  expiration: 3600000
+  secret: mySecretKeyForJWTTokenGenerationAndValidationPleaseChangeInProduction
+  expiration: 86400000
+  issuer: transporteur-api
+
+logging:
+  level:
+    root: INFO
+    com.transporteur: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.data.mongodb: DEBUG
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method

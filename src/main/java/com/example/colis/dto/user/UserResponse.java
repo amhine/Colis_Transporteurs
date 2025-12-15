@@ -18,7 +18,6 @@ public class UserResponse {
     private String login;
     private Role role;
     private Boolean active;
-
     private UserStatus statut;
     private Specialite specialite;
 

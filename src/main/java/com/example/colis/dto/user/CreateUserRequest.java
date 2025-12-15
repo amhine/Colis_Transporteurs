@@ -2,6 +2,7 @@ package com.example.colis.dto.user;
 
 import com.example.colis.model.Enums.Role;
 import com.example.colis.model.Enums.Specialite;
+import com.example.colis.model.Enums.UserStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class CreateUserRequest {
     @NotNull(message = "Role est obligatoire")
     private Role role;
 
-    private StatutTransporteur statut;
+    private UserStatus statut;
     private Specialite specialite;
 
 }
