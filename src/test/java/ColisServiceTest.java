@@ -14,6 +14,7 @@ import com.example.colis.model.Transporteur;
 import com.example.colis.repository.ColisRepository;
 import com.example.colis.repository.UserRepository;
 import com.example.colis.service.ColisService;
+import com.example.colis.service.Impl.ColisServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +42,7 @@ class ColisServiceTest {
     private ColisMapper colisMapper;
 
     @InjectMocks
-    private ColisService colisService;
+    private ColisServiceImpl colisService;
 
     private ColisFragile testColis;
     private Transporteur testTransporteur;
