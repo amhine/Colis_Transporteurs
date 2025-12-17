@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  app:
+    build: .
+    container_name: colis-app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    environment:
+      # Spring Boot reconnaît cette variable
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/colis
+
+volumes:
+  mongodb_data:
