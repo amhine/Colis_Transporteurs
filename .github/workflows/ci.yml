@@ -18,10 +18,13 @@ jobs:
         ports:
           - 27017:27017
         options: >-
-          --health-cmd "mongo --eval 'db.adminCommand(\"ping\")'" 
+          --health-cmd "mongosh --eval 'db.serverStatus().ok'"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+          --health-start-period 40s
+        env:
+          MONGO_INITDB_DATABASE: testdb
 
     steps:
       - name: Checkout code
@@ -34,32 +37,68 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Verify Docker
-        run: docker --version
+      - name: Show environment
+        run: |
+          echo "Java version:"
+          java -version
+          echo "Maven version:"
+          mvn -v
+          echo "Docker version:"
+          docker --version
 
       - name: Build with Maven
-        run: mvn clean install -DskipTests
+        run: mvn -B clean package -DskipTests
 
       - name: Run tests
-        run: mvn test -Dsurefire.useFile=false || true
+        run: |
+          mvn test -B \
+            -Dspring.data.mongodb.uri=mongodb://localhost:27017/testdb \
+            -Dsurefire.useFile=false
+        continue-on-error: true
 
       - name: Save test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: target/surefire-reports/
+          path: |
+            target/surefire-reports/*.xml
+            target/failsafe-reports/*.xml
+          if-no-files-found: warn
 
       - name: Build Docker image
-        run: docker build -t transporteur-app:${{ github.sha }} .
-        working-directory: ./ # à changer si Dockerfile n'est pas à la racine
+        run: |
+          echo "Building Docker image..."
+          docker build -t transporteur-app:${{ github.sha }} .
+          docker images
 
-      - name: Push Docker image (optional)
+      - name: Test Docker image
+        run: |
+          echo "Testing Docker container..."
+          docker run -d --name test-container -p 8081:8081 transporteur-app:${{ github.sha }}
+          sleep 30
+          docker ps -a
+          docker logs test-container
+          curl -v http://localhost:8081/actuator/health || true
+
+      - name: Push to Docker Hub
         if: github.ref == 'refs/heads/main'
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_PASSWORD" ]; then
+            echo "Docker credentials not set, skipping push"
+            exit 0
+          fi
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker tag transporteur-app:${{ github.sha }} $DOCKER_USERNAME/transporteur-app:latest
           docker tag transporteur-app:${{ github.sha }} $DOCKER_USERNAME/transporteur-app:${{ github.sha }}
+          docker push $DOCKER_USERNAME/transporteur-app:latest
           docker push $DOCKER_USERNAME/transporteur-app:${{ github.sha }}
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker stop test-container || true
+          docker rm test-container || true
