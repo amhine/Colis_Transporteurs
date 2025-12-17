@@ -1,0 +1,60 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mongodb:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.serverStatus().ok'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          --health-start-period 40s
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Build with Maven
+      run: mvn -B clean package -DskipTests
+
+    - name: Run tests
+      run: mvn test
+      env:
+        SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/testdb
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: target/surefire-reports/
+        if-no-files-found: ignore
+
+    - name: Build Docker image
+      run: |
+        docker build -t colis-transporteurs .
+        
+    - name: Run Docker container
+      run: |
+        docker run -d -p 8081:8081 --name colis-app -e SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/testdb colis-transporteurs
+        sleep 30
+        docker logs colis-app
+        curl -v http://localhost:8081/actuator/health
