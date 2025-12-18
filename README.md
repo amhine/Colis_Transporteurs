@@ -204,7 +204,7 @@ Services :
 ## 📊 UML
 
 * Diagramme de cas d'utilisation
-  <img width="1063" height="766" alt="image" src="https://github.com/user-attachments/assets/3223c733-50bb-425b-a50b-3dcf46bf06cc" />
+<img width="1124" height="850" alt="image" src="https://github.com/user-attachments/assets/c7d2efe0-19ae-4145-b732-fbef548d80b6" />
 
 * Diagramme de classes
   <img width="1063" height="766" alt="image" src="https://github.com/user-attachments/assets/c643bdc9-7bf3-404a-a396-73aa4cf53bdf" />
