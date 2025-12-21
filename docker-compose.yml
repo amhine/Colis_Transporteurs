@@ -13,11 +13,10 @@ services:
     build: .
     container_name: colis-app
     ports:
-      - "8081:8081"
+      - "8082:8081"
     depends_on:
       - mongodb
     environment:
-      # Spring Boot reconnaît cette variable
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/colis
 
 volumes:
