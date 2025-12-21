@@ -18,13 +18,13 @@ public interface UserRepository extends MongoRepository<User,String> {
 
     Optional<User> findByLogin(String login);
 
-    @Query("{ '_class' : 'com.colis.model.Transporteur' }")
+    @Query("{ '_class' : 'com.example.colis.model.Transporteur' }")
     Page<Transporteur> findAllTransporteurs(Pageable pageable);
 
-    @Query("{ '_class' : 'com.colis.model.Transporteur', 'specialite' : ?0 }")
+    @Query("{ '_class' : 'com.example.colis.model.Transporteur', 'specialite' : ?0 }")
     Page<Transporteur> findTransporteursBySpecialite(Specialite specialite, Pageable pageable);
 
-    @Query("{ '_class' : 'com.colis.model.Transporteur', 'statut' : ?0 }")
+    @Query("{ '_class' : 'com.example.colis.model.Transporteur', 'statut' : ?0 }")
     Page<Transporteur> findTransporteursByStatut(UserStatus statut, Pageable pageable);
 
 
