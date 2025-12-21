@@ -7,6 +7,7 @@ import com.example.colis.model.User;
 import com.example.colis.repository.UserRepository;
 import com.example.colis.security.JwtUtil;
 import com.example.colis.service.AuthService;
+import com.example.colis.service.Impl.AuthServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +36,7 @@ class AuthServiceTest {
     private JwtUtil jwtUtil;
 
     @InjectMocks
-    private AuthService authService;
+    private AuthServiceImpl authService;
 
     private User testUser;
     private LoginRequest loginRequest;
